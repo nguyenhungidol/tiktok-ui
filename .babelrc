@@ -7,7 +7,9 @@
         "root": ["./src"],
         "alias": {
           "@components": "./src/components",
-          "@pages": "./src/pages"
+          "@pages": "./src/pages",
+          "@assets": "./src/assets",
+          "@layouts": "./src/components/Layout/components"
         }
       }
     ]
