@@ -54,7 +54,6 @@ function Menu({ children, items = [], onChange = fn }) {
                 </div>
             )}
             onHide={() => setHistory((prev) => prev.slice(0, 1))}
-            offset={[12, 8]}
         >
             {children}
         </Tippy>
