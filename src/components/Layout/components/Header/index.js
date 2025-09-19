@@ -4,6 +4,7 @@ import Menu from '../Poper/MenuPoper';
 import Image from '../../../Image/Image';
 import Search from '../Search';
 
+import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
@@ -102,9 +103,9 @@ function Header() {
                     {currentUser ? (
                         <>
                             <Tippy delay={[0, 50]} content="Upload video" placement="bottom">
-                                <button className={cx('action-btn')}>
+                                <Link to="/upload" className={cx('action-btn')}>
                                     <UploadIcon />
-                                </button>
+                                </Link>
                             </Tippy>
                             <Tippy delay={[0, 50]} content="Message" placement="bottom">
                                 <button className={cx('action-btn')}>
