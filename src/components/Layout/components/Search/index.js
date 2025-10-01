@@ -1,6 +1,8 @@
 import AccountItem from '../../../AccountItem';
 import { Wrapper as PoperWrapper } from '@layouts/Poper';
 import { useEffect, useState, useRef } from 'react';
+import { useDebounce } from '../../../../hooks';
+import * as searchService from '../../../../apiService/searchService';
 
 import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,6 +17,7 @@ function Search() {
     const [searchResult, setsearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
@@ -24,16 +27,18 @@ function Search() {
             return;
         }
         setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setsearchResult(res.data);
+        const fetchApi = async () => {
+            try {
+                const result = await searchService.search(debouncedValue);
+                setsearchResult(result);
+            } catch (error) {
+                console.log('Failed to fetch search', error);
+            } finally {
                 setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
-    }, [searchValue]);
+            }
+        };
+        fetchApi();
+    }, [debouncedValue]);
 
     const handleHideResult = () => {
         setShowResult(false);
