@@ -8,6 +8,7 @@
     --default-layout-horizontal-spacer: 24px;
     --text-color: #161823;
     --white: #fff;
+    --font-family: 'ProximaNova', sans-serif;
 }
 
 * {
@@ -46,7 +47,7 @@ html {
 }
 
 body {
-    font-family: 'ProximaNova', sans-serif;
+    font-family: var(--font-family);
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;

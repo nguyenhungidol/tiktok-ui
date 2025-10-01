@@ -46,6 +46,10 @@
     font-family: var(--font-family);
     background-color: var(--primary);
 }
+
+.logo-link {
+    display: flex;
+}
 .user-avatar {
     width: 32px;
     height: 32px;

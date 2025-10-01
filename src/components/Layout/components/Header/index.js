@@ -2,8 +2,9 @@ import images from '@assets/images';
 import Button from '@components/Button';
 import Menu from '../Poper/MenuPoper';
 import Image from '../../../Image/Image';
-import Search from '../Search';
+import Search from '../Search/Search';
 
+import routeConfigs from '../../../../config/routes';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
@@ -94,7 +95,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={images.logo} alt="Tiktok"></img>
+                    <Link to={routeConfigs.home} className={cx('logo-link')}>
+                        <img src={images.logo} alt="Tiktok"></img>
+                    </Link>
                 </div>
 
                 <Search />
