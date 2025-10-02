@@ -19,10 +19,10 @@ function Search() {
     const [loading, setLoading] = useState(false);
     const debouncedValue = useDebounce(searchValue, 500);
 
-    const inputRef = useRef();
+    const inputRef = useRef(null);
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debouncedValue.trim()) {
             setsearchResult([]);
             return;
         }
@@ -32,69 +32,75 @@ function Search() {
                 const result = await searchService.search(debouncedValue);
                 setsearchResult(result);
             } catch (error) {
-                console.log('Failed to fetch search', error);
+                console.error(error);
             } finally {
                 setLoading(false);
             }
         };
         fetchApi();
-    }, [debouncedValue, searchValue]);
+    }, [debouncedValue]);
 
     const handleHideResult = () => {
         setShowResult(false);
     };
+
     const handleChange = (e) => {
-        const searchValue = e.target.value;
-        if (!searchValue.startsWith(' ')) {
-            setSearchValue(searchValue);
+        const value = e.target.value;
+        if (!value.startsWith(' ')) {
+            setSearchValue(value);
         }
     };
 
     return (
-        <HeadlessTippy
-            interactive
-            visible={showResult && searchResult.length > 0}
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PoperWrapper>
-                        <h4 className={cx('search-title')}>Accounts</h4>
-                        {searchResult.map((result) => (
-                            <AccountItem key={result.id} data={result} />
-                        ))}
-                    </PoperWrapper>
-                </div>
-            )}
-            placement="bottom"
-            onClickOutside={handleHideResult}
-        >
-            <div className={cx('search')}>
-                <input
-                    ref={inputRef}
-                    placeholder="Search accounts and videos"
-                    spellCheck={false}
-                    onChange={handleChange}
-                    value={searchValue}
-                    className={cx('search-input')}
-                    onFocus={() => setShowResult(true)}
-                />
-                {!!searchValue && !loading && (
-                    <button
-                        className={cx('clear')}
-                        onClick={() => {
-                            setSearchValue('');
-                            inputRef.current.focus();
-                            setsearchResult([]);
-                        }}
-                    >
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
+        <div>
+            <HeadlessTippy
+                interactive
+                appendTo={() => document.body}
+                visible={showResult && searchResult.length > 0}
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PoperWrapper>
+                            <h4 className={cx('search-title')}>Accounts</h4>
+                            {searchResult.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
+                        </PoperWrapper>
+                    </div>
                 )}
-                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
-            </div>
-        </HeadlessTippy>
+                placement="bottom"
+                onClickOutside={handleHideResult}
+            >
+                <div className={cx('search')}>
+                    <input
+                        ref={inputRef}
+                        placeholder="Search accounts and videos"
+                        spellCheck={false}
+                        onChange={handleChange}
+                        value={searchValue}
+                        className={cx('search-input')}
+                        onFocus={() => setShowResult(true)}
+                    />
+                    {!!searchValue && !loading && (
+                        <button
+                            className={cx('clear')}
+                            onClick={() => {
+                                setSearchValue('');
+                                setsearchResult([]);
+                                if (inputRef.current) {
+                                    inputRef.current.focus();
+                                }
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                    )}
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 

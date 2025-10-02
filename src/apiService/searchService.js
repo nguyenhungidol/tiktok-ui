@@ -10,7 +10,6 @@ export const search = async (q, type = 'less') => {
         });
         return response.data;
     } catch (error) {
-        console.log('Failed to fetch search', error);
         throw error;
     }
 };

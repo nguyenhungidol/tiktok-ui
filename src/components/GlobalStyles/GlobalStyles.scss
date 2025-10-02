@@ -52,6 +52,31 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     color: var(--text-color);
+    overflow-y: overflow;
+}
+
+// Scrollbar
+html::-webkit-scrollbar {
+    width: 8px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: rgba(22, 24, 35, 0.25);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.42);
+    }
+
+    &:active {
+        background-color: rgba(22, 24, 35, 0.52);
+    }
+}
+
+html::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 button,
