@@ -1,5 +1,5 @@
 import AccountItem from '@components/AccountItem';
-import { Wrapper as PoperWrapper } from '@layouts/components/Poper';
+import { Wrapper as PoperWrapper } from '@components/Poper';
 import { useEffect, useState, useRef } from 'react';
 import { useDebounce } from '@hooks';
 import * as searchService from '@services/searchService';

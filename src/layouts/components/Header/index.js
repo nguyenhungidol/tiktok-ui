@@ -1,6 +1,6 @@
 import images from '@assets/images';
 import Button from '@components/Button';
-import Menu from '../Poper/MenuPoper';
+import Menus from '@components/Poper/MenuPoper/Menus';
 import Image from '@components/Image';
 import Search from '../Search/Search';
 
@@ -128,7 +128,7 @@ function Header() {
                             <Button primary>Login</Button>
                         </>
                     )}
-                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                    <Menus items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
@@ -140,7 +140,7 @@ function Header() {
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
                             </button>
                         )}
-                    </Menu>
+                    </Menus>
                 </div>
             </div>
         </header>
