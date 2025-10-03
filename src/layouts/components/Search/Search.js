@@ -1,8 +1,8 @@
-import AccountItem from '../../../AccountItem';
-import { Wrapper as PoperWrapper } from '@layouts/Poper';
+import AccountItem from '@components/AccountItem';
+import { Wrapper as PoperWrapper } from '@layouts/components/Poper';
 import { useEffect, useState, useRef } from 'react';
-import { useDebounce } from '../../../../hooks';
-import * as searchService from '../../../../apiService/searchService';
+import { useDebounce } from '@hooks';
+import * as searchService from '@services/searchService';
 
 import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

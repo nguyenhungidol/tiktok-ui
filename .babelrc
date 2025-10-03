@@ -1,17 +1,22 @@
 {
-  "plugins": [
-    "styled-components",
-    [
-      "module-resolver",
-      {
-        "root": ["./src"],
-        "alias": {
-          "@components": "./src/components",
-          "@pages": "./src/pages",
-          "@assets": "./src/assets",
-          "@layouts": "./src/components/Layout/components"
-        }
-      }
+    "plugins": [
+        "styled-components",
+        [
+            "module-resolver",
+            {
+                "root": ["./src"],
+                "alias": {
+                    "@components": "./src/components",
+                    "@pages": "./src/pages",
+                    "@assets": "./src/assets",
+                    "@layouts": "./src/layouts",
+                    "@configs": "./src/configs",
+                    "@icons": "./src/components/Icons",
+                    "@utils": "./src/utils",
+                    "@services": "./src/services",
+                    "@hooks": "./src/hooks"
+                }
+            }
+        ]
     ]
-  ]
 }

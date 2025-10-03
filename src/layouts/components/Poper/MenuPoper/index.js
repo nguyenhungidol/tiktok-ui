@@ -1,5 +1,5 @@
 import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PoperWrapper } from '@layouts/Poper';
+import { Wrapper as PoperWrapper } from '@layouts/components/Poper';
 import classNames from 'classnames/bind';
 
 import styles from './Menu.module.scss';

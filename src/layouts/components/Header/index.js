@@ -1,10 +1,10 @@
 import images from '@assets/images';
 import Button from '@components/Button';
 import Menu from '../Poper/MenuPoper';
-import Image from '../../../Image/Image';
+import Image from '@components/Image';
 import Search from '../Search/Search';
 
-import routeConfigs from '../../../../config/routes';
+import config from '@configs';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
@@ -21,7 +21,7 @@ import {
     faSignOut,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { UploadIcon, MessageIcon, InboxIcon } from '../../../Icons';
+import { UploadIcon, MessageIcon, InboxIcon } from '@icons/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -95,7 +95,7 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <Link to={routeConfigs.home} className={cx('logo-link')}>
+                    <Link to={config.routes.home} className={cx('logo-link')}>
                         <img src={images.logo} alt="Tiktok"></img>
                     </Link>
                 </div>
