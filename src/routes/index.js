@@ -4,6 +4,7 @@ import Following from '@pages/Following';
 import Profile from '@pages/Profile';
 import Upload from '@pages/Upload';
 import Search from '@pages/Search';
+import Live from '@pages/Live';
 import { HeaderOnly } from '../layouts';
 
 const publicRoutes = [
@@ -28,6 +29,10 @@ const publicRoutes = [
         path: config.routes.search,
         conponent: Search,
         layout: null,
+    },
+    {
+        path: config.routes.live,
+        conponent: Live,
     },
 ];
 
